@@ -59,11 +59,13 @@ var TextField = (function (_super) {
     __extends(TextField, _super);
     function TextField() {
         _super.apply(this, arguments);
+        this.t = ' ';
+        this.p = "20px Arial";
     }
     TextField.prototype.render = function (context) {
-        context.font = "20px Arial";
+        context.font = this.p;
         context.fillStyle = '#000000';
-        context.fillText('HelloWorld', 0, 20);
+        context.fillText(this.t, 0, 20);
     };
     return TextField;
 }(DisplayObject));
@@ -96,24 +98,27 @@ function loadResource(imageList, callback) {
 var canvas = document.getElementById("game");
 var context = canvas.getContext("2d");
 var rect = new Rect();
-rect.width = 200;
-rect.height = 100;
+rect.width = 100;
+rect.height = 40;
+rect.x = 400;
+rect.y = 250;
 rect.color = '#00FF00';
-var rect2 = new Rect();
-rect2.width = 300;
-rect2.height = 50;
-rect2.x = 200;
-rect2.y = 200;
-rect2.rotation = Math.PI / 8;
-rect2.color = '#00FFFF';
 var text = new TextField();
-text.x = 10;
+text.x = 250;
+text.y = 180;
+text.p = "20px Arial";
+text.t = '13081208';
+var text1 = new TextField();
+text1.x = 400;
+text1.y = 260;
+text1.p = "40px Arial";
+text1.t = 'start';
 var bitmap = new Bitmap();
-bitmap.source = 'wander-icon.jpg';
+bitmap.source = 'bg1.jpg';
 //渲染队列
-var renderQueue = [rect, rect2, text, bitmap];
+var renderQueue = [bitmap, rect, text1, text];
 //资源加载列表
-var imageList = ['wander-icon.jpg'];
+var imageList = ['bg1.jpg'];
 //先加载资源，加载成功之后执行渲染队列
 loadResource(imageList, function () {
     drawQueue(renderQueue);
