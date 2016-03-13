@@ -44,11 +44,19 @@ var Body = (function () {
         this.displayObject = displayObject;
     }
     Body.prototype.onTicker = function (duringTime) {
-        this.vy += duringTime * GRAVITY;
+        if (Math.abs(this.vy) < 1 && this.y + this.height >= BOUNDS_BOTTOM) {
+            this.vy = 0;
+        }
+        else {
+            this.vy += duringTime * GRAVITY;
+        }
         this.x += duringTime * this.vx;
         this.y += duringTime * this.vy;
         //反弹
         if (this.y + this.height > BOUNDS_BOTTOM) {
+            this.vy = -BOUNCE * this.vy;
+        }
+        if (this.y < 0) {
             this.vy = -BOUNCE * this.vy;
         }
         //TODO： 左右越界反弹
@@ -73,7 +81,7 @@ var body = new Body(rect);
 body.width = rect.width;
 body.height = rect.height;
 body.vx = 50; //需要保证 vx 在 0-50的范围内行为正常
-body.vy = 0; //需要保证 vy 在 0-50的范围内行为正常
+body.vy = 40; //需要保证 vy 在 0-50的范围内行为正常
 var renderCore = new RenderCore();
 var ticker = new Ticker();
 renderCore.start([rect]);
