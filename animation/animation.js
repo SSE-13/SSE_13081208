@@ -46,12 +46,7 @@ var Body = (function () {
     Body.prototype.onTicker = function (duringTime) {
         if (Math.abs(this.vy) < 0.1 && this.y + this.height > BOUNDS_BOTTOM) {
             this.vy = 0;
-            if (this.vx > 0) {
-                this.vx -= 0.5;
-            }
-            else if (this.vx > 0) {
-                this.vx -= -0.5;
-            }
+            this.vx *= BOUNCE;
         }
         else {
             this.vy += duringTime * GRAVITY;
@@ -83,8 +78,8 @@ rect.color = '#FF0000';
 var body = new Body(rect);
 body.width = rect.width;
 body.height = rect.height;
-body.vx = 50; //需要保证 vx 在 0-50的范围内行为正常
-body.vy = 40; //需要保证 vy 在 0-50的范围内行为正常
+body.vx = 100; //需要保证 vx 在 0-50的范围内行为正常
+body.vy = 100; //需要保证 vy 在 0-50的范围内行为正常
 var renderCore = new RenderCore();
 var ticker = new Ticker();
 renderCore.start([rect]);
