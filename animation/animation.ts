@@ -50,6 +50,7 @@ class Body {
     y = 0;
     width = 0;
     height = 0;
+   
     
 
     displayObject;
@@ -61,7 +62,7 @@ class Body {
     public onTicker(duringTime) {
 
       
-       if(Math.abs(this.vy)<0.1&&this.y + this.height > BOUNDS_BOTTOM ){
+      if(Math.abs(this.vy)<1&&this.y + this.height > BOUNDS_BOTTOM ){
            this.vy=0;
            this.vx*=BOUNCE;
            
@@ -72,15 +73,19 @@ class Body {
         this.y += duringTime * this.vy;
 
         //反弹
-        if (this.y + this.height > BOUNDS_BOTTOM || this.y < 0) {
-            this.vy = -BOUNCE * this.vy;
+        if ((this.y + this.height > BOUNDS_BOTTOM&&this.vy > 0) || (this.y < 0&&this.vy < 0)) {
+           
+               this.vy = -BOUNCE * this.vy;
         
+       
         }
        
 
         //TODO： 左右越界反弹
-         if (this.x+ this.width > BOUNDS_RIGHT ||this.x < BOUNDS_LEFT) {
-            this.vx = -this.vx;
+         if ((this.x+ this.width > BOUNDS_RIGHT&&this.vx > 0) ||(this.x < BOUNDS_LEFT&&this.vx < 0)) {
+           
+               this.vx = -BOUNCE * this.vx;
+         
         }
 
 

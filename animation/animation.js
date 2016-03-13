@@ -44,7 +44,7 @@ var Body = (function () {
         this.displayObject = displayObject;
     }
     Body.prototype.onTicker = function (duringTime) {
-        if (Math.abs(this.vy) < 0.1 && this.y + this.height > BOUNDS_BOTTOM) {
+        if (Math.abs(this.vy) < 1 && this.y + this.height > BOUNDS_BOTTOM) {
             this.vy = 0;
             this.vx *= BOUNCE;
         }
@@ -54,12 +54,12 @@ var Body = (function () {
         this.x += duringTime * this.vx;
         this.y += duringTime * this.vy;
         //反弹
-        if (this.y + this.height > BOUNDS_BOTTOM || this.y < 0) {
+        if ((this.y + this.height > BOUNDS_BOTTOM && this.vy > 0) || (this.y < 0 && this.vy < 0)) {
             this.vy = -BOUNCE * this.vy;
         }
         //TODO： 左右越界反弹
-        if (this.x + this.width > BOUNDS_RIGHT || this.x < BOUNDS_LEFT) {
-            this.vx = -this.vx;
+        if ((this.x + this.width > BOUNDS_RIGHT && this.vx > 0) || (this.x < BOUNDS_LEFT && this.vx < 0)) {
+            this.vx = -BOUNCE * this.vx;
         }
         //根据物体位置更新显示对象属性
         var displayObject = this.displayObject;
@@ -78,8 +78,8 @@ rect.color = '#FF0000';
 var body = new Body(rect);
 body.width = rect.width;
 body.height = rect.height;
-body.vx = 100; //需要保证 vx 在 0-50的范围内行为正常
-body.vy = 100; //需要保证 vy 在 0-50的范围内行为正常
+body.vx = 10000; //需要保证 vx 在 0-50的范围内行为正常
+body.vy = 10000; //需要保证 vy 在 0-50的范围内行为正常
 var renderCore = new RenderCore();
 var ticker = new Ticker();
 renderCore.start([rect]);
