@@ -61,13 +61,14 @@ class Body {
     public onTicker(duringTime) {
 
       
-       if(Math.abs(this.vy)<1&&this.y + this.height > BOUNDS_BOTTOM ){
+       if(Math.abs(this.vy)<0.1&&this.y + this.height > BOUNDS_BOTTOM ){
            this.vy=0;
            if(this.vx>0){
                this.vx-=0.5 ;
-           }else{
+           }else if(this.vx>0){
                this.vx-=-0.5;
            }
+
            
        } else{
            this.vy += duringTime * GRAVITY;
