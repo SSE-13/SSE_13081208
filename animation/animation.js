@@ -44,8 +44,14 @@ var Body = (function () {
         this.displayObject = displayObject;
     }
     Body.prototype.onTicker = function (duringTime) {
-        if (Math.abs(this.vy) < 1 && this.y + this.height >= BOUNDS_BOTTOM) {
+        if (Math.abs(this.vy) < 1 && this.y + this.height > BOUNDS_BOTTOM) {
             this.vy = 0;
+            if (this.vx > 0) {
+                this.vx -= 0.5;
+            }
+            else {
+                this.vx -= -0.5;
+            }
         }
         else {
             this.vy += duringTime * GRAVITY;
@@ -53,15 +59,12 @@ var Body = (function () {
         this.x += duringTime * this.vx;
         this.y += duringTime * this.vy;
         //反弹
-        if (this.y + this.height > BOUNDS_BOTTOM) {
-            this.vy = -BOUNCE * this.vy;
-        }
-        if (this.y < 0) {
+        if (this.y + this.height > BOUNDS_BOTTOM || this.y < 0) {
             this.vy = -BOUNCE * this.vy;
         }
         //TODO： 左右越界反弹
         if (this.x + this.width > BOUNDS_RIGHT || this.x < BOUNDS_LEFT) {
-            this.vx = -BOUNCE * this.vx;
+            this.vx = -this.vx;
         }
         //根据物体位置更新显示对象属性
         var displayObject = this.displayObject;

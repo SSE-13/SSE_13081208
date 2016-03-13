@@ -63,6 +63,12 @@ class Body {
       
        if(Math.abs(this.vy)<1&&this.y + this.height > BOUNDS_BOTTOM ){
            this.vy=0;
+           if(this.vx>0){
+               this.vx-=0.5 ;
+           }else{
+               this.vx-=-0.5;
+           }
+           
        } else{
            this.vy += duringTime * GRAVITY;
        }
@@ -78,7 +84,7 @@ class Body {
 
         //TODO： 左右越界反弹
          if (this.x+ this.width > BOUNDS_RIGHT ||this.x < BOUNDS_LEFT) {
-            this.vx = -BOUNCE * this.vx;
+            this.vx = -this.vx;
         }
 
 
