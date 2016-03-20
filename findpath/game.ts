@@ -27,14 +27,19 @@ module game {
         }
 
         render(context: CanvasRenderingContext2D) {
-            context.fillStyle = '#0000FF';
+            
             context.strokeStyle = '#FF0000';
             context.beginPath();
             for (var i = 0; i < NUM_COLS; i++) {
                 for (var j = 0; j < NUM_ROWS; j++) {
-                    context.rect(i * GRID_PIXEL_WIDTH, j * GRID_PIXEL_HEIGHT, GRID_PIXEL_WIDTH, GRID_PIXEL_HEIGHT);
-                    context.fill();
-                    context.stroke();
+                    if(!this.grid.getNode(i,j).walkable){
+                        context.fillStyle = '#000000';
+                    }else{
+                        context.fillStyle = '#0000FF';
+                    }
+                    context.fillRect(i * GRID_PIXEL_WIDTH, j * GRID_PIXEL_HEIGHT, GRID_PIXEL_WIDTH, GRID_PIXEL_HEIGHT);
+                    context.strokeRect(i * GRID_PIXEL_WIDTH, j * GRID_PIXEL_HEIGHT, GRID_PIXEL_WIDTH, GRID_PIXEL_HEIGHT);
+                   
                 }
             }
             context.closePath();
