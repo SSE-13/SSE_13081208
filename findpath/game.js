@@ -74,7 +74,7 @@ var game;
             findpath.setHeurisitic(findpath.diagonal);
             var result = findpath.findPath(grid);
             var path = findpath._path;
-            this.path = path;
+            this.path = findpath._path;
             console.log(this.path);
             console.log(grid.toString());
         };
