@@ -97,7 +97,7 @@ module game {
         }
 }
 
-
+}
 
 
 var boyShape = new game.BoyShape();
@@ -112,4 +112,3 @@ renderCore.start([world, boyShape]);
 var ticker = new Ticker();
 ticker.start([body]);
 ticker.onTicker(); 
-}
