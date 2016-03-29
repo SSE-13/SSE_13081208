@@ -5,22 +5,22 @@ module game {
 
 var humanContainer = new render.DisplayObjectContainer();
 var head = new render.Bitmap();
-head.x =40;
+head.x =20;
 head.y = -60;
 var trunk = new render.Bitmap();
-trunk.x = 20;
+trunk.x = 0;
 trunk.y=0;
 var left_arm = new render.Bitmap();
-left_arm.x = -80;
+left_arm.x = -100;
 left_arm.y =30;
 var right_arm = new render.Bitmap();
-right_arm.x = 110;
+right_arm.x = 90;
 right_arm.y =30;
 var left_leg = new render.Bitmap();
-left_leg.x = -50;
+left_leg.x = -70;
 left_leg.y =180;
 var right_leg = new render.Bitmap();
-right_leg.x = 90;
+right_leg.x = 70;
 right_leg.y = 180;
 
 head.source = "head.png";
