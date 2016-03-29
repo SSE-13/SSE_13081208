@@ -3,31 +3,53 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var container = new render.DisplayObjectContainer();
-// container.x = 100;
-var bitmap = new render.Bitmap();
-bitmap.source = "wander-icon.jpg";
-var bitmap2 = new render.Bitmap();
-bitmap2.source = "wander-icon.jpg";
-bitmap2.x = -50;
-bitmap2.y = -50;
-// container.addChild(bitmap)
-container.addChild(bitmap2);
+var humanContainer = new render.DisplayObjectContainer();
+var head = new render.Bitmap();
+head.x = 40;
+head.y = -60;
+var trunk = new render.Bitmap();
+trunk.x = 20;
+trunk.y = 0;
+var left_arm = new render.Bitmap();
+left_arm.x = -80;
+left_arm.y = 30;
+var right_arm = new render.Bitmap();
+right_arm.x = 110;
+right_arm.y = 30;
+var left_leg = new render.Bitmap();
+left_leg.x = -50;
+left_leg.y = 180;
+var right_leg = new render.Bitmap();
+right_leg.x = 90;
+right_leg.y = 180;
+head.source = "head.png";
+trunk.source = "trunk.png";
+left_arm.source = "left_arm.png";
+right_arm.source = "right_arm.png";
+left_leg.source = "left_leg.png";
+right_leg.source = "right_leg.png";
+humanContainer.addChild(head);
+humanContainer.addChild(trunk);
+humanContainer.addChild(left_arm);
+humanContainer.addChild(right_arm);
+humanContainer.addChild(left_leg);
+humanContainer.addChild(right_leg);
 var renderCore = new render.RenderCore();
-renderCore.start(container, ["wander-icon.jpg"]);
+renderCore.start(humanContainer, ["head.png", "trunk.png", "left_arm.png", "right_arm.png", "left_leg.png", "right_leg.png"]);
 var HumanBody = (function (_super) {
     __extends(HumanBody, _super);
     function HumanBody() {
         _super.apply(this, arguments);
     }
     HumanBody.prototype.onTicker = function (duringTime) {
-        // this.x += 1;
-        this.x = this.y = 100;
-        this.rotation += 1;
+        this.x += this.vx * duringTime;
+        this.rotation += Math.PI * duringTime;
     };
     return HumanBody;
 }(Body));
 var ticker = new Ticker();
-var body = new HumanBody(container);
+var body = new HumanBody(humanContainer);
+body.vx = 5;
+body.y = 100;
 ticker.start([body]);
 //# sourceMappingURL=game.js.map
