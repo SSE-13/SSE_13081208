@@ -84,10 +84,19 @@ module game {
                 var targetx = this.path[this.steps].x * this.width;
                 var targety = this.path[this.steps].y * this.height;
                 if (this.x < targetx) {
-                    this.x = (this.x + this.vx * duringTime > targetx) ? targetx : (this.x + this.vx * duringTime);
+                   if (this.x + this.vx * duringTime > targetx){
+                       this.x=targetx;
+                   }else{
+                        this.x= this.x + this.vx * duringTime;
+                   }
                 }
                 if (this.y < targety) {
-                    this.y = (this.y + this.vy * duringTime > targety) ? targety : (this.y + this.vy * duringTime);
+                    if (this.y + this.vy * duringTime > targety) {
+                        this.y= targety ;
+                        }
+                    else{
+                        this.y=this.y + this.vy * duringTime;
+                    } 
                 }
                 if (this.x == targetx && this.y == targety) {
                     this.steps += 1;
