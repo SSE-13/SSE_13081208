@@ -105,7 +105,12 @@ var OnClick = () => {
     
 
 }
+
+
 eventCore.register(head,HitTest,OnClick);
+eventCore.register(left_leg,HitTest,OnClick);
+eventCore.register(right_leg,HitTest,OnClick);
+
 
 
 
