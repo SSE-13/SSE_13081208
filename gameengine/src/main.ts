@@ -33,10 +33,14 @@ function createMapEditor() {
 var green=new editor.Material("Green.jpg","green",0);
 var black=new editor.Material("Black.jpg","black",0);
 var red=new editor.Material("Red.jpg","red",0);
+var ground=new editor.Material("ground.jpg","ground",0);
+var wall=new editor.Material("wall.jpg","wall",0);
 var materials=new Array<editor.Material>();
 materials.push(green);
 materials.push(black);
 materials.push(red);
+materials.push(ground);
+materials.push(wall);
 
 var currenttile:editor.Tile;
 
@@ -79,4 +83,4 @@ stage.addChild(information);
 stage.addChild(panel);
 
 
-renderCore.start(stage,["Black.jpg","Red.jpg","Green.jpg","Stroke.png"]);
+renderCore.start(stage,["Black.jpg","Red.jpg","Green.jpg","Stroke.png","ground.jpg","wall.jpg"]);
